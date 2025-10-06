@@ -1,5 +1,124 @@
 ---
-title: "eds-223-hw-1-version1"
-format: html
+title: "eds-223-hw1"
+format: pdf
+code-fold: FALSE
+editor_options: 
+  chunk_output_type: console
 ---
+
+## Description
+
+For this assignment, you will explore an environmental justice topic of your choosing. You should select a region, community, or environmental issue that matters to you.
+
+You must complete the following:
+
+-   create two maps that communicate an environmental justice issue
+-   write a brief paragraph explaining what your maps communicate
+
+## read in dataset
+```{r}
+library(tidyverse)
+library(sf)
+library(here)
+library(tmap)
+# read in geodatabase of EJScreen data at the Census Block Group level
+ejscreen <- sf::st_read(here::here("data", "ejscreen","EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
+
+# filter to a state you are interested in
+tx <- ejscreen %>%
+  dplyr::filter(ST_ABBREV == "TX") 
+# filter to a county you are interested in
+travis_county <- ejscreen %>% 
+  dplyr::filter(CNTY_NAME %in% c("Travis County")) 
+
+```
+
+## Let's make some maps
+
+Research question: To what extent are low-income people of color in Nueces County within distance of a hazardous waste facility?
+
+```{r}
+# Let's make a map of the distribution of hazardous waste facilities in the county
+tmap_mode("plot")
+#- PTSDF = hazardous waste proximity
+#- D2_PTSDF = Hazardous waste proximity EJ Index
+# - PEOPCOLOR: Concentrations of people of color
+#- TSDF_CNT: Number of Hazardous waste facilities in the block group
+# - RSEI_AIR: Toxic Releases to Air
+
+
+# map of concentrations of POC related to # of hardaous waste facilities in the block group 
+# nueces_id <- nueces_county %>% filter(ID == "483550005001")
+
+tm_shape(travis_county, bbox = st_bbox(travis_county)) + 
+  #tm_fill() + 
+tm_polygons("PEOPCOLORPCT", fill.scale = tm_scale(values = "blue"), fill.legend = tm_legend(title = "Percentage of People of Color")) + tm_symbols("PTSDF", title.size = "Hazardous Waste Proximity (km)")+ tm_grid(
+    col = "black", lwd = 0.5, 
+    alpha = 0.7
+  ) +
+  tm_graticules(
+    col = "black", 
+    lwd = 0.3, 
+    alpha = 0.6
+  ) + tm_compass(
+    position = c("top", "right"), 
+    size = 2
+  ) + tm_scalebar(
+    position = c("top", "center"), text.size = 0.7, size = 1)+ 
+  tm_layout(
+  title.size = 2)
+
+
+
+
+```
+
+
+## Second map 
+```{r}
+## hazardous waste proximity vs % low income hased on index (polygon)
+tmap_mode("plot")
+
+tm_shape(travis_county) +
+  tm_polygons(
+    fill = "D2_PTSDF",
+    fill.scale = tm_scale(values = "brewer.reds"),
+    fill.legend = tm_legend(title = "Hazardous Waste Proximity EJ Index")
+  ) +
+  # tm_symbols(
+  #   size = "LOWINCPCT",
+  #   shape = 22, 
+  #   alpha = 0.6,
+  #   title.size = "Low-Income Percentage"
+  # ) +
+  tm_layout(
+    title = "Hazardous Waste Proximity EJ Index to  Communities in Travis County",
+    title.size = 8,
+    title.position = c("center", "top"),
+    legend.outside.position = "bottom"
+  ) + tm_graticules(
+    col = "black", 
+    lwd = 0.3, 
+    alpha = 0.6
+  ) + tm_compass(
+    position = c("top", "right"), 
+    size = 2
+  ) + tm_grid(
+    col = "black", lwd = 0.5, 
+    alpha = 0.4
+  ) + 
+  tm_scalebar(
+    position = c("bottom", "right")) + tm_graticules(
+    col = "black", 
+    lwd = 0.3, 
+    alpha = 0.6) 
+ 
+ 
+  
+# install.packages("tinytex")
+# tinytex::install_tinytex()
+
+
+```
+
 
