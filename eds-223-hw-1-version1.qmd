@@ -29,13 +29,15 @@ tx <- ejscreen %>%
   dplyr::filter(ST_ABBREV == "TX") 
 # filter to a county you are interested in
 travis_county <- ejscreen %>% 
-  dplyr::filter(CNTY_NAME %in% c("Travis County")) 
+  dplyr::filter(CNTY_NAME %in% c("Travis County"))
+
+travis_county_average <- travis_county %>% group_by(ID) %>% mutate(mean_PTSDF = mean(PTSDF) )
 
 ```
 
 ## Let's make some maps
 
-Research question: To what extent are low-income people of color in Nueces County within distance of a hazardous waste facility?
+Research question: To what extent are people of color in Travis County within distance of a hazardous waste facility?
 
 ```{r}
 # Let's make a map of the distribution of hazardous waste facilities in the county
@@ -47,14 +49,17 @@ tmap_mode("plot")
 # - RSEI_AIR: Toxic Releases to Air
 
 
-# map of concentrations of POC related to # of hardaous waste facilities in the block group 
+# map of concentrations of POC related to # of hazardous waste facilities in the block group 
 # nueces_id <- nueces_county %>% filter(ID == "483550005001")
 
 tm_shape(travis_county, bbox = st_bbox(travis_county)) + 
   #tm_fill() + 
-tm_polygons("PEOPCOLORPCT", fill.scale = tm_scale(values = "blue"), fill.legend = tm_legend(title = "Percentage of People of Color")) + tm_symbols("PTSDF", title.size = "Hazardous Waste Proximity (km)")+ tm_grid(
-    col = "black", lwd = 0.5, 
-    alpha = 0.7
+tm_polygons("PEOPCOLORPCT", fill.scale = tm_scale(values = "blue"), fill.legend = tm_legend(title = "Percentage of People of Color")) + 
+  tm_symbols(size = "PTSDF", 
+             title.size = "Hazardous Waste Proximity (km)",
+             alpha = .7, shape = 21)  +
+  tm_grid(
+    col = "black", lwd = 0.5 
   ) +
   tm_graticules(
     col = "black", 
@@ -63,12 +68,13 @@ tm_polygons("PEOPCOLORPCT", fill.scale = tm_scale(values = "blue"), fill.legend 
   ) + tm_compass(
     position = c("top", "right"), 
     size = 2
-  ) + tm_scalebar(
-    position = c("top", "center"), text.size = 0.7, size = 1)+ 
-  tm_layout(
-  title.size = 2)
-
-
+  ) + 
+  tm_scalebar(
+    position = c("bottom", "left"), text.size = 0.7) + 
+  # tm_layout(
+  # title.size = 2)  
+  tm_title("Proximity of Hazardous Waste Facilities to POC Communities in Travis County", size = 1, fontfamily = "Times New Roman") + 
+  tm_layout(inner.margins = c(.1, .1, .1, .1),  component.autoscale = FALSE)
 
 
 ```
@@ -78,7 +84,6 @@ tm_polygons("PEOPCOLORPCT", fill.scale = tm_scale(values = "blue"), fill.legend 
 ```{r}
 ## hazardous waste proximity vs % low income hased on index (polygon)
 tmap_mode("plot")
-
 tm_shape(travis_county) +
   tm_polygons(
     fill = "D2_PTSDF",
@@ -91,12 +96,7 @@ tm_shape(travis_county) +
   #   alpha = 0.6,
   #   title.size = "Low-Income Percentage"
   # ) +
-  tm_layout(
-    title = "Hazardous Waste Proximity EJ Index to  Communities in Travis County",
-    title.size = 8,
-    title.position = c("center", "top"),
-    legend.outside.position = "bottom"
-  ) + tm_graticules(
+   tm_graticules(
     col = "black", 
     lwd = 0.3, 
     alpha = 0.6
@@ -111,10 +111,17 @@ tm_shape(travis_county) +
     position = c("bottom", "right")) + tm_graticules(
     col = "black", 
     lwd = 0.3, 
-    alpha = 0.6) 
- 
- 
-  
+    alpha = 0.6) + 
+#   tm_layout(
+#     title = "Hazardous Waste Proximity EJ Index For Communities in Travis County",
+#     title.size = .9,
+# #    title.position = tm_pos("center"),
+#     legend.outside.position = "bottom", 
+#     component.autoscale = FALSE
+#   ) 
+  tm_title("Hazardous Waste Proximity EJ Index For Communities in Travis County", size = 1, fontfamily = "Times New Roman") + 
+  tm_layout(inner.margins = c(.1, .1, .1, .1),  component.autoscale = FALSE)
+
 # install.packages("tinytex")
 # tinytex::install_tinytex()
 
