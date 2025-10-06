@@ -1,3 +1,7 @@
+# Ignore data
+data/ejscreen/
+*.gdb
+*.tif
 # History files
 .Rhistory
 .Rapp.history
