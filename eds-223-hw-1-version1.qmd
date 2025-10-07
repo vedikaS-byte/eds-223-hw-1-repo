@@ -80,7 +80,6 @@ texas_summary <- tx %>%
 #| message: false
 #| warning: false
 
-
 tmap_mode("plot") # Mode to "plot" to create static map 
 
 tm_shape(texas_summary, 
@@ -94,8 +93,7 @@ tm_shape(texas_summary,
     size = "avg_PTSDF", # Classify average proximity by size
     shape = 21, # Set the symbol shape to a circle
     col = "blue", # Each circle will be blue
-    title.size = "Average Facility Proximity (km)")+
-  #tm_borders(col = "gray40", lwd = 0.4) + ## 
+    title.size = "Average Facility\nProximity (km)") + # Break legend title to new line
   tm_compass(position = c("top", "right"), # Move compass to top right corner
              size = 2, 
              type = "4star") + # Specify a four-pointed compass
@@ -105,14 +103,16 @@ tm_shape(texas_summary,
     col = "black",
     lwd = 0.3, # Establish "thickness" of lines
     alpha = 0.6 ) +  # Specify transparency to ensure graticules are not too solid
-  tm_title("Hazardous Waste Proximity To Communities of Color in Texas Counties", size = .9) + # Give title for the map
-   tm_layout(
+  tm_title("Hazardous Waste Proximity To Communities of Color in Texas Counties", size = 1.5) + # Give title for the map
+  tm_layout(
     legend.outside = TRUE, # Ensure legend is outside map bbox
     inner.margins = c(.01,.01,.01,.2), # Margins to adjust for frame width and height were experimented with to fit all elements neatly
-    component.autoscale = FALSE) # Prevent the title from automatically scaling with the figure
+    component.autoscale = FALSE)  # Prevent the title from automatically scaling with the figure 
 
 
 ```
+
+![](Map1.png)
 
 ### Map 2: Visualizing Hazardous Waste EJ Index in Travis County
 
@@ -148,14 +148,10 @@ tm_shape(travis_county) +
   tm_title("Hazardous Waste Proximity EJ Index For Communities in Travis County", size = .9) + 
   tm_layout(inner.margins = c(.1, .1, .1, .1),  
             component.autoscale = FALSE)
-
-
 ```
 
 ## Interpretation
 
--   write a brief paragraph explaining what your maps communicate
-
-    There is a
+Generally, there does not seem to be a consistent trend in an increased proximity to hazardous waste facilities for predominantly communities of color (POC communities). On average, residents are close to multiple hazardous waste management facilities in counties containing industrial cities and ports along the Gulf Coast. The Rio Grande Valley generally has a strong POC community presence and, on average, has residents close to multiple facilities. Central Texas and Gulf Coast counties, especially counties containing Austin and Houston, are moderately dominated by POC communities and have a significant amount of facilities within a close distance of residents. The Texas Panhandle notable has a lower presence of POC communities, with fewer or farther facilities within distance of the average resident. Experts may consider the health effects of inadequate waste management for POC Communities in Gulf Coast counties facing continued marginalization, particularly highly industrial cities like Corpus Christi that contain multiple facilities within a close distance of residents.
 
 ## Data Citations
