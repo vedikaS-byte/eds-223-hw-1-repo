@@ -8,31 +8,56 @@ editor_options:
 
 ## Description
 
-The state of Texas consists of 254 counties and is racially diverse. A
-topic of interest regarding environmental justice includes waste
-management impacts on communities, especially communities of color. This
-analysis aims to explore the proximity of hazardous waste facilities to
-communities based on demographic makeup. Additionally, the Hazardous
-Waste Proximity Environmental Justice (EJ) Index is used to assess the
-extent of hazardous waste impact from facilities in block groups within
-Travis County.
+The state of Texas, consisting of 254 counties, is culturally and
+racially diverse. A topic of interest regarding environmental justice
+includes waste management impacts on communities, especially communities
+of color. Travis County, which includes the City of Austin, has been
+shaped by a legacy of systemic racism and exclusion that continues to
+affect communities of color today ([City of Austin,
+n.d](https://www.austintexas.gov/department/history-equity-office)).
+This analysis aims to explore the proximity of hazardous waste
+facilities to communities based on demographic makeup. Additionally, the
+Hazardous Waste Proximity Environmental Justice (EJ) Index is used to
+assess the extent of hazardous waste impact from facilities in block
+groups within Travis County.
 
 This repository contains:
 
-A brief explanation of the repository’s purpose Paragraphs or a bulleted
-list are both acceptable options You may include an image or logo that
-represents the project A concise description of what’s housed in the
-repository This includes information about the repository structure or
-file organization Details regarding data access Any necessary
-information on where data lives (e.g. is it housed in the repo, on a
-server, in a library / package etc.) and how to access it in order to
-run the code A list of authors or current contributors (for
-collaborative work) Consider hyperlinking collaborators’ GitHub profiles
-or other professional profile References and / or Acknowledgements In an
-appropriate, consistent format, including links Provide reference to any
-other individuals or sources that supported the development of the
-repository. For example, did you fork an existing repository? Did the
-work have any funding sources? Were there individuals you consulted with
-or were inspired by? Don’t forget to add references for data sets too
+-   `README`: Description of repository, brief summary of purpose of
+    analysis, and data references.
+
+-   `data`: Contains EJScreen geo-database and associated metadata.
+
+-   `eds-223-hw-1-version1.qmd`: Primary `qmd` document detailing
+    analysis.
+
+-   `eds-223-hw-1-version1.pdf`: A rendered pdf version of analysis.
+
+-   `figs`: Contains finalized versions of figures.
+
+-   `.gitignore`: Contain files ignored for ease of updating repository
+    (ie. ignore data)
+
+## Data Access
+
+The Environmental Justice Mapping and Screening Tool was created by the
+Environmental Protection Agency (EPA) to track and reveal environmental
+injustices based on several socioeconomic variables. The dataset was
+downloaded from the [EPA
+website](https://www.epa.gov/ejscreen/download-ejscreen-data) and
+contains environmental and demographic data at the block group level.
+This dataset was provided for an assignment for EDS 223 as a class for
+the MEDS program at the Bren School of Environmental Science and
+Management, UC Santa Barbara.
 
 ## Citations
+
+*About the Equity Division \| AustinTexas.gov*. (2016). Austintexas.gov.
+Retrieved: October 6, 2025, from
+<https://www.austintexas.gov/department/history-equity-office>
+
+United States Environmental Protection Agency. 2015a. EJSCREEN.
+Retrieved: October, 6, 2025, from www.epa.gov/ejscreen
+
+United States Environmental Protection Agency. 2023b. EJScreen Technical
+Documentation. Retrieved: October, 6, 2025 from www.epa.gov/EJScreen  
