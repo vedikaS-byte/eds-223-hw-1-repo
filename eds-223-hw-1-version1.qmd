@@ -1,5 +1,7 @@
 ---
 title: "Visual Analysis of Hazardous Waste Facility Proximity in Texas"
+author: "Vedika Shirtekar"
+date: "10/06/2025" 
 format:
   pdf:
     code-fold: false
@@ -41,7 +43,8 @@ library(tmap) # Load "tmap" for functions to create and layer maps
 
 ```{r}
 # Read in geodatabase of EJScreen data at the Census Block Group level
-ejscreen <- sf::st_read(here::here("data", "ejscreen","EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
+ejscreen <- sf::st_read(here::here("data", "ejscreen", 
+"EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
 ```
 
 2.  Filter for the specified state and a county of interest (ie. Travis County) for the second map.
@@ -62,11 +65,15 @@ travis_county <- ejscreen %>%
 # Group by county name 
 texas_summary <- tx %>%
   group_by(CNTY_NAME) %>%
-  # Run mean() on "PTSDF" to determine the average proximity of communities to facilities per county
+  # Run mean() on "PTSDF" to 
+  # determine the average proximity 
+  # of communities to facilities per county
   summarise(
     avg_PTSDF = mean(PTSDF, na.rm = TRUE),
     
-  # Average the percentage of people of color at the block level to obtain a singular representative demographic value for each county
+  # Average the percentage of people of color 
+  #at the block level to obtain a singular 
+  #representative demographic value for each county
     PEOPCOLORPCT = mean(PEOPCOLORPCT, na.rm = TRUE)
   )
 ```
@@ -76,14 +83,11 @@ texas_summary <- tx %>%
 4.  Use functions in the `tmap` package to creat a map showcasing the average proximity of hazardous waste in each county based on the percentage of people of color for that county.
 
 ```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
 tmap_mode("plot") # Mode to "plot" to create static map 
 
 tm_shape(texas_summary, 
-         bbox = texas_summary) + # Set the boundaries of the map frame with "bbox" parameter to texas_summary
+         bbox = texas_summary) + # Set boundaries of the map frame with 
+  #"bbox" parameter to texas_summary
   tm_polygons( 
     "PEOPCOLORPCT",
     palette = "brewer.greens", # Color palette scale based on brewer
@@ -106,31 +110,31 @@ tm_shape(texas_summary,
   tm_title("Hazardous Waste Proximity To Communities of Color in Texas Counties", size = 1.5) + # Give title for the map
   tm_layout(
     legend.outside = TRUE, # Ensure legend is outside map bbox
-    inner.margins = c(.01,.01,.01,.2), # Margins to adjust for frame width and height were experimented with to fit all elements neatly
-    component.autoscale = FALSE)  # Prevent the title from automatically scaling with the figure 
+    inner.margins = c(.01,.01,.01,.2), #Margins to adjust for frame 
+    #width and height were experimented 
+    #with to fit all elements neatly
+    component.autoscale = FALSE)# Prevent the title from 
+#automatically scaling with the figure 
 
 
 ```
 
-![](figs/Map1.png)
+![Figure 1. Formatted Map of Hazardous Waste Proximity To Communities of Color in Texas Counties](figs/Map1.png)
 
 ### Map 2: Visualizing Hazardous Waste EJ Index in Travis County
 
 5.  Use functions in the `tmap` package to visualize the hazardous waste EJ Index in each block group within Travis County
 
 ```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
 # Set travis_county as the base layer
 tm_shape(travis_county) +
   tm_polygons(
     fill = "D2_PTSDF",
     fill.scale = tm_scale(values = "brewer.reds"),
-    fill.legend = tm_legend(title = "Hazardous Waste Proximity EJ Index") # Set the legend title
+    fill.legend = tm_legend(title = "Hazardous Waste Proximity EJ Index") # Set the 
+    #legend title
   ) +
-   tm_graticules(
+   tm_graticules( # Establish network 
     col = "black", 
     lwd = 0.3, 
     alpha = 0.6
@@ -144,15 +148,16 @@ tm_shape(travis_county) +
     col = "black", lwd = 0.5, 
     alpha = 0.4
   ) + 
-  tm_scalebar( 
+  tm_scalebar( # Scalebar for reference
     position = c("bottom", "right")) + 
-  tm_title("Hazardous Waste Proximity EJ Index For Communities in Travis County", size = 1.5) + 
-  tm_layout(inner.margins = c(.1, .1, .1, .1),  
+  tm_title("Hazardous Waste Proximity EJ Index For Communities in Travis County", 
+           size = 1.5) + 
+  tm_layout(inner.margins = c(.1, .1, .1, .1),
             component.autoscale = FALSE)
 
 ```
 
-![](figs/Map2.png)
+![Figure 2. Formatted Map of Hazardous Waste Proximity EJ Index For Communities in Travis County](figs/Map2.png)
 
 ## Interpretation
 
