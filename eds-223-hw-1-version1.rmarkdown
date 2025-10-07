@@ -8,6 +8,7 @@ execute:
   message: false           
 ---
 
+
 # Visual Analysis of Hazardous Waste Facility Proximity in Texas
 
 ### Primary Objective
@@ -28,6 +29,7 @@ This analysis will consider the selected variables:
 
 ### Load the appropriate packages
 
+
 ```{r}
 library(tidyverse) # Load the tidyverse" for data cleaning
 library(sf) # Load "sf" for GIS analysis
@@ -35,16 +37,20 @@ library(here) # Load "here" to locate and reference files
 library(tmap) # Load "tmap" for functions to create and layer maps
 ```
 
+
 ### Import Data and Initial Data Wrangling
 
 1.  Import the geodatabase and filter for counties within Texas.
+
 
 ```{r}
 # Read in geodatabase of EJScreen data at the Census Block Group level
 ejscreen <- sf::st_read(here::here("data", "ejscreen","EJSCREEN_2023_BG_StatePct_with_AS_CNMI_GU_VI.gdb")) 
 ```
 
+
 2.  Filter for the specified state and a county of interest (ie. Travis County) for the second map.
+
 
 ```{r}
 # Filter to specified state
@@ -56,7 +62,9 @@ travis_county <- ejscreen %>%
   dplyr::filter(CNTY_NAME %in% c("Travis County"))
 ```
 
+
 3.  Group by each county within Texas to summarize the average proximity of hazardous waste at the block level (`PTSDF`) for each county.
+
 
 ```{r}
 # Group by county name 
@@ -71,9 +79,11 @@ texas_summary <- tx %>%
   )
 ```
 
+
 ### Map 1: Visualizing Average Hazardous Waste Proximity Based on County Demographics
 
 4.  Use functions in the `tmap` package to creat a map showcasing the average proximity of hazardous waste in each county based on the percentage of people of color for that county.
+
 
 ```{r}
 #| echo: false
@@ -112,11 +122,13 @@ tm_shape(texas_summary,
 
 ```
 
+
 ![](Map1.png)
 
 ### Map 2: Visualizing Hazardous Waste EJ Index in Travis County
 
 5.  Use functions in the `tmap` package to visualize the hazardous waste EJ Index in each block group within Travis County
+
 
 ```{r}
 #| echo: false
@@ -137,8 +149,7 @@ tm_shape(travis_county) +
   ) + 
   tm_compass(
     position = c("top", "right"), 
-    size = 2, 
-    type = "4star"
+    size = 2
   ) + 
   tm_grid( # Add grid system to draw coordinates
     col = "black", lwd = 0.5, 
@@ -149,16 +160,14 @@ tm_shape(travis_county) +
   tm_title("Hazardous Waste Proximity EJ Index For Communities in Travis County", size = 1.5) + 
   tm_layout(inner.margins = c(.1, .1, .1, .1),  
             component.autoscale = FALSE)
-
-
-travis_county <- st_transform(travis_county, crs = 4326)
-
 ```
+
 
 ## Interpretation
 
 Generally, there does not seem to be a consistent trend in an increased proximity to hazardous waste facilities for predominantly communities of color (POC communities). On average, residents are close to multiple hazardous waste management facilities in counties containing industrial cities and ports along the Gulf Coast. The Rio Grande Valley generally has a strong POC community presence and, on average, has residents close to multiple facilities. Central Texas and Gulf Coast counties, especially counties containing Austin and Houston, are moderately dominated by POC communities and have a significant amount of facilities within a close distance of residents. The Texas Panhandle notable has a lower presence of POC communities, with fewer or farther facilities within distance of the average resident. Experts may consider the health effects of inadequate waste management for POC Communities in Gulf Coast counties facing continued marginalization, particularly highly industrial cities like Corpus Christi that contain multiple facilities within a close distance of residents.
 
-The capital city of Austin is located in Travis County. Based on the Hazardous Waste Proximity EJ Index,
+The capital city of Austin is located in Travis County. Based on the
 
 ## Data Citations
+
