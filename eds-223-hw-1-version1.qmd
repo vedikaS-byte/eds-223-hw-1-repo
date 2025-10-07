@@ -112,7 +112,7 @@ tm_shape(texas_summary,
 
 ```
 
-![](Map1.png)
+![](figs/Map1.png)
 
 ### Map 2: Visualizing Hazardous Waste EJ Index in Travis County
 
@@ -151,6 +151,8 @@ tm_shape(travis_county) +
             component.autoscale = FALSE)
 
 ```
+
+![](figs/Map2.png)
 
 ## Interpretation
 
