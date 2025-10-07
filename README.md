@@ -26,6 +26,6 @@ The Environmental Justice Mapping and Screening Tool was created by the Environm
 
 *About the Equity Division \| AustinTexas.gov*. (2016). Austintexas.gov. Retrieved: October 6, 2025, from <https://www.austintexas.gov/department/history-equity-office>
 
-United States Environmental Protection Agency. 2015a. EJSCREEN. Retrieved: October, 6, 2025, from www.epa.gov/ejscreen
+United States Environmental Protection Agency. 2015. EJSCREEN. Retrieved: October, 6, 2025, from www.epa.gov/ejscreen
 
-United States Environmental Protection Agency. 2023b. EJScreen Technical Documentation. Retrieved: October, 6, 2025 from www.epa.gov/EJScreen  
+United States Environmental Protection Agency. 2023. EJScreen Technical Documentation. Retrieved: October, 6, 2025 from www.epa.gov/EJScreen  
