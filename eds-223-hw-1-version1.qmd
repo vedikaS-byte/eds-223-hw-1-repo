@@ -119,7 +119,9 @@ tm_shape(texas_summary,
 
 ```
 
-![Figure 1. Formatted Map of Hazardous Waste Proximity To Communities of Color in Texas Counties](figs/Map1.png)
+![](figs/Map1.png)
+
+*Figure 1. Formatted Map of Hazardous Waste Proximity To Communities of Color in Texas Counties.*
 
 ### Map 2: Visualizing Hazardous Waste EJ Index in Travis County
 
@@ -157,9 +159,11 @@ tm_shape(travis_county) +
 
 ```
 
-![Figure 2. Formatted Map of Hazardous Waste Proximity EJ Index For Communities in Travis County](figs/Map2.png)
+![](figs/Map2.png)
 
-## Interpretation
+*Figure 2. Formatted Map of Hazardous Waste Proximity EJ Index For Communities in Travis County.*
+
+## **Interpretation**
 
 Generally, there does not seem to be a consistent trend in an increased proximity to hazardous waste facilities for predominantly communities of color (POC communities). On average, residents are close to multiple hazardous waste management facilities in counties containing industrial cities and ports along the Gulf Coast. The Rio Grande Valley generally has a strong POC community presence and, on average, has residents close to multiple facilities. Central Texas and Gulf Coast counties, especially counties containing Austin and Houston, are moderately dominated by POC communities and have a significant amount of facilities within a close distance of residents. The Texas Panhandle notable has a lower presence of POC communities, with fewer or farther facilities within distance of the average resident. Experts may consider the health effects of inadequate waste management for POC Communities in Gulf Coast counties facing continued marginalization, particularly highly industrial cities like Corpus Christi that contain multiple facilities within a close distance of residents.
 
