@@ -4,18 +4,27 @@ format:
   pdf:
     code-fold: false
 execute:
-  echo: true                
   warning: false            
   message: false           
 ---
 
-## Primary Objective
+# Visual Analysis of Hazardous Waste Facility Proximity in Texas
+
+### Primary Objective
 
 The state of Texas consists of 254 counties and is racially diverse. A topic of interest regarding environmental justice includes waste management impacts on communities, especially communities of color. Travis County, which includes the city of Austin, has been shaped by a legacy of systemic racism and exclusion that continues to affect communities of color today ([City of Austin, n.d](https://www.austintexas.gov/department/history-equity-office)).The Environmental Justice Mapping and Screening Tool was created by the Environmental Protection Agency (EPA) to track and reveal environmental injustices based on several socioeconomic variables. The [dataset](https://drive.google.com/file/d/14CauXFZkVh_6z2Euq0m1Sq1kHQ31fiMk/view) was downloaded from the [EPA website](https://www.epa.gov/ejscreen/download-ejscreen-data) and contains environmental and demographic data at the block group level.
 
 The goal of this assignment is to explore how people of color within Texas counties are significantly impacted by their proximity to toxic waste. The following research question was utilized to guide the analysis:
 
 **To what extent are communities in Texas counties within distance of a hazardous waste facility, especially communities of color and those within Travis County?**
+
+This analysis will consider the selected variables:
+
+-   `PTSDF`: Population-weighted average representing the ratio of total count of hazardous waste facilities in each block group within five kilometers of an average resident to the distance (EPA, 2023)
+
+-   `PEOPCOLOR`: Concentrations of people of color within a block group
+
+-   `D2_PTSDF`: Hazardous waste proximity EJ Index
 
 ### Load the appropriate packages
 
@@ -71,10 +80,6 @@ texas_summary <- tx %>%
 #| message: false
 #| warning: false
 
-#- PTSDF = hazardous waste proximity
-#- D2_PTSDF = Hazardous waste proximity EJ Index
-# - PEOPCOLOR: Concentrations of people of color
-#- TSDF_CNT: Number of Hazardous waste facilities in the block group
 
 tmap_mode("plot") # Mode to "plot" to create static map 
 
