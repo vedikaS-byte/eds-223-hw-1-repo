@@ -22,6 +22,10 @@ This repository contains:
 
 The Environmental Justice Mapping and Screening Tool was created by the Environmental Protection Agency (EPA) to track and reveal environmental injustices based on several socioeconomic variables. The dataset was downloaded from the [EPA website](https://www.epa.gov/ejscreen/download-ejscreen-data) and contains environmental and demographic data at the block group level. This dataset was provided for an assignment for EDS 223 as a class for the MEDS program at the Bren School of Environmental Science and Management, UC Santa Barbara.
 
+## Contributions
+
+This repository was created by Vedika Shirtekar for the EDS 223 course as part of the Master of Environmental Data Science (MEDS) program. Compiled data and instructions neccessary for the assignment were provided by The Bren School of Environmental Science and Management, UC Santa Barbara.
+
 ## Citations
 
 *About the Equity Division \| AustinTexas.gov*. (2016). Austintexas.gov. Retrieved: October 6, 2025, from <https://www.austintexas.gov/department/history-equity-office>
